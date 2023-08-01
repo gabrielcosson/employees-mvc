@@ -1,6 +1,7 @@
 package com.gabrielnieves.developertest.controllers;
 
 import com.gabrielnieves.developertest.models.dto.EmployeeDTO;
+import com.gabrielnieves.developertest.models.dto.EmployeesDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -16,8 +17,8 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees")
-    public EmployeeDTO getEmployees(){
-        EmployeeDTO employees = getAllEmployees();
+    public EmployeesDTO getEmployees(){
+        EmployeesDTO employees = getAllEmployees();
         return employees;
     }
 
@@ -32,8 +33,8 @@ public class EmployeeController {
         return restTemplate.getForObject(url, EmployeeDTO.class);
     }
 
-    public EmployeeDTO getAllEmployees(){
+    public EmployeesDTO getAllEmployees(){
         String url = "https://dummy.restapiexample.com/api/v1/employees";
-        return restTemplate.getForObject(url, EmployeeDTO.class);
+        return restTemplate.getForObject(url, EmployeesDTO.class);
     }
 }
