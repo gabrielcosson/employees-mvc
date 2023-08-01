@@ -12,8 +12,8 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeDTO {
+public class EmployeesDTO {
     private String status;
-    private Employee data;
+    private List<Employee> data;
     private String message;
 }
