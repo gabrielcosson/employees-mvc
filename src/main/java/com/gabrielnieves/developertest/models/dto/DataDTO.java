@@ -5,14 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeesDTO {
-    private String status;
-    private List<DataDTO> data;
-    private String message;
+public class DataDTO {
+    private int id;
+    private String employee_name;
+    private float employee_salary;
+    private int employee_age;
+    private String profile_image;
 }
