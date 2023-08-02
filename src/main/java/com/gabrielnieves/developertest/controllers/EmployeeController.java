@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping()
+@RequestMapping("/api")
 public class EmployeeController {
     private final RestTemplate restTemplate;
 
@@ -44,15 +44,21 @@ public class EmployeeController {
     @GetMapping("/employee/{id}")
     public Employee getEmployeeById(@PathVariable(name = "id") int id) {
         EmployeeDTO employeeDto = employeeByIdAPI(id);
-        Employee employee = Employee.builder()
-                .id(employeeDto.getData().getId())
-                .name(employeeDto.getData().getEmployee_name())
-                .age(employeeDto.getData().getEmployee_age())
-                .salary(employeeDto.getData().getEmployee_salary())
-                .annual_salary(employeeService.getAnnualSalary(employeeDto.getData().getEmployee_salary()))
-                .image(employeeDto.getData().getProfile_image())
-                .build();
-        return employee;
+        if(employeeDto.getData() == null){
+            return Employee.builder()
+                    .id(id)
+                    .name("Not Found")
+                    .build();
+        }else{
+            return Employee.builder()
+                    .id(employeeDto.getData().getId())
+                    .name(employeeDto.getData().getEmployee_name())
+                    .age(employeeDto.getData().getEmployee_age())
+                    .salary(employeeDto.getData().getEmployee_salary())
+                    .annual_salary(employeeService.getAnnualSalary(employeeDto.getData().getEmployee_salary()))
+                    .image(employeeDto.getData().getProfile_image())
+                    .build();
+        }
     }
 
     public EmployeeDTO employeeByIdAPI(int employeeId){
